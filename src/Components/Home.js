@@ -106,7 +106,7 @@ export default function Home() {
           {Input.map(val => {
             return (
               <div style={{marginTop: "7rem", backgroundColor:"darkgray" , width:"50rem", height: "16rem", borderRadius:"2rem"}}>
-                <h3 style={{marginLeft:"3rem"}}>{val.text}</h3>
+                <h3 style={{marginLeft:"3rem", fontFamily:"serif"}}>{val.text}</h3>
                 <img className='post-img' style={{ marginLeft: "1rem" }} src={val.img} alt="" />
               </div>
             )
