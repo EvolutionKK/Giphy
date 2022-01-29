@@ -38,8 +38,9 @@ export default function Home() {
     };
     fetchData();
   }, []);
-  const imageSelect = (event) => {
-    setImage(event.target.value)
+
+  const imageSelect = () => {
+    setImage(data)
     handleClose1(false)
     console.log(image)
   }
