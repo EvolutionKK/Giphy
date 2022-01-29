@@ -3,12 +3,16 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import { Modal, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-// import Giphy from './Giphy';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 
 export default function Home() {
   const [show, setShow] = useState(false);
-  const [image, setImage] = useState("");
-  const [Input, setInput] = useState("");
+  const [image, setImage] = useState('')
+  const [Input, setInput] = useState([{
+    text: "Hello there, This is blah blah.",
+    img: "https://media1.giphy.com/media/IfxBjGrbIK3vwkODkA/200w.webp?cid=ecf05e47rzltx6od7jwgt7s9y9vwflloy96ade9dgkdrd6oa&rid=200w.webp&ct=g"
+  }]);
+  const [test, setTest] = useState("");
   const [show1, setShow1] = useState(false);
   const [data, setData] = useState([])
   const [isError, setIsError] = useState(false);
@@ -74,16 +78,16 @@ export default function Home() {
   };
 
   const handleInput = (event) => {
-    setInput(event.target.value)
+    setTest(event.target.value)
   }
   const handlePost = () => {
     setShow(false)
-    return (
-      <div>
-        <p>{Input}</p>
-        <img src={image} alt="" />
-      </div>
-    )
+    // Input.push({
+    //   text: test,
+    //   img: image
+    // })
+    setInput(Input => [{text:test, img:image}, ...Input]);
+
   }
 
   return (
@@ -92,15 +96,21 @@ export default function Home() {
       <div className='card'>
         <ul>
           <li><button className='home-button'>Find Friends</button></li>
-          <li><button style={{marginTop: "6rem"}} className='home-button'>Group</button></li>
-          <li><button style={{marginTop: "12rem"}} className='home-button'>Watch</button></li>
-          <li><button style={{marginTop: "18rem"}} className='home-button'>Memories</button></li>
-          <li><button style={{marginTop: "24rem"}} className='home-button'>Events</button></li>
-          <li><button style={{marginTop: "30rem"}} className='home-button'>Favourite</button></li>
+          <li><button style={{ marginTop: "6rem" }} className='home-button'>Group</button></li>
+          <li><button style={{ marginTop: "12rem" }} className='home-button'>Watch</button></li>
+          <li><button style={{ marginTop: "18rem" }} className='home-button'>Memories</button></li>
+          <li><button style={{ marginTop: "24rem" }} className='home-button'>Events</button></li>
+          <li><button style={{ marginTop: "30rem" }} className='home-button'>Favourite</button></li>
         </ul>
         <div className='post-text'>
-          <h3 style={{marginTop: "8rem"}}>{Input}</h3>
-          <img className='post-img' style={{marginTop: "0.5rem"}} src={image} alt="" />
+          {Input.map(val => {
+            return (
+              <div style={{marginTop: "7rem", backgroundColor:"darkgray" , width:"50rem", height: "16rem", borderRadius:"2rem"}}>
+                <h3 style={{marginLeft:"3rem"}}>{val.text}</h3>
+                <img className='post-img' style={{ marginLeft: "1rem" }} src={val.img} alt="" />
+              </div>
+            )
+          })}
         </div>
       </div>
       <div className='home-input'>
@@ -114,7 +124,7 @@ export default function Home() {
             <button style={{ border: "none" }} className='modal-title-button'>Photo / Video Album</button>
           </Modal.Title>
         </Modal.Header>
-        <input type="text" value={Input} onChange={handleInput} className="modal-input" placeholder='Type here...'></input>
+        <input type="text" value={test} onChange={handleInput} className="modal-input" placeholder='Type here...'></input>
         <img src={image} alt="" />
         <Modal.Footer>
           <Button variant="secondary" style={{ marginRight: "8.5rem", width: "6rem", borderRadius: '1rem', position: "absolute" }}>
@@ -153,10 +163,6 @@ export default function Home() {
           <Button onClick={handleClose1} style={{ marginLeft: "1rem" }}>Close</Button>
         </Modal.Footer>
       </Modal>
-      {/* <div>
-        <p>{Input}</p>
-        <img src={image} alt="" />
-      </div> */}
 
     </div>
   );

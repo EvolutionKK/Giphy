@@ -77,8 +77,8 @@
 
 .card{
   background-color: bisque;
-  width: 96rem;
-  height: 42.5rem;
+  width: 95rem;
+  height: 100rem;
   position: absolute; 
 }
 
@@ -158,7 +158,7 @@ li{
 .post-text{
   margin-left: 30rem;
   height: 2rem;
-  width: 80rem;
+  width: 60rem;
   position: relative;
 }
 
