@@ -82,10 +82,6 @@ export default function Home() {
   }
   const handlePost = () => {
     setShow(false)
-    // Input.push({
-    //   text: test,
-    //   img: image
-    // })
     setInput(Input => [{text:test, img:image}, ...Input]);
 
   }
